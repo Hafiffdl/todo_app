@@ -5,6 +5,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:todo_app/screens/intro_screen/intro_screen1.dart';
 import 'package:todo_app/screens/intro_screen/intro_screen2.dart';
 import 'package:todo_app/screens/intro_screen/intro_screen3.dart';
+import 'package:todo_app/screens/main_screen/home_screen.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({Key? key}) : super(key: key);
@@ -66,7 +67,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                           context, 
                           MaterialPageRoute(
                             builder: (context){
-                              return Home();
+                              return const Home();
                         },
                         ),
                         );

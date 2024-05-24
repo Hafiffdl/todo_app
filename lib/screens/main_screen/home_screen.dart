@@ -57,6 +57,7 @@ class _HomeState extends State<Home> {
                           todo: todoo,
                           onToDoChanged: _handleToDoChange,
                           onDeleteTime: _deleteToDoItem,
+                          onEditTime: _editToDoItem,
                         ),
                     ],
                   ),
@@ -137,6 +138,41 @@ class _HomeState extends State<Home> {
     setState(() {
       todosList.removeWhere((item) => item.id == id);
     });
+  }
+
+  void _editToDoItem(ToDo todo) {
+    _todoController.text = todo.todoText!;
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('Edit ToDo'),
+        content: TextField(
+          controller: _todoController,
+          decoration: InputDecoration(
+            hintText: 'Edit todo item',
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              setState(() {
+                todo.todoText = _todoController.text;
+              });
+              _todoController.clear();
+              Navigator.of(context).pop();
+            },
+            child: Text('Save'),
+          ),
+          TextButton(
+            onPressed: () {
+              _todoController.clear();
+              Navigator.of(context).pop();
+            },
+            child: Text('Cancel'),
+          ),
+        ],
+      ),
+    );
   }
 
   void _addToDoItem(String toDo) {
